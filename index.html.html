@@ -1,0 +1,380 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>HTML5 Basic Page</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- 초기화 -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poor+Story&display=swap');
+        * { 
+            margin: 0; padding: 0;
+            font-family: 'Poor Story', cursive;
+        }
+        a { text-decoration: none; }
+        li { list-style: none; }
+    </style>
+    <!-- 기본 클래스 -->
+    <style>
+        .pull-left { float: left; }
+        .pull-right { float:right; }
+    </style>
+    <!-- 페이지 -->
+    <style>
+        body {
+            width: 960px; margin: 0 auto;
+            background-image: url(첨부사진/background_image.png);
+        }
+
+        #page-wrapper {
+            background: rgb(250, 249, 241);
+            margin: 40px 0; padding: 10px 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 6px rgba(100, 100, 100, 0.3);
+        }
+    </style>
+    <!-- 헤더 -->
+    <style>
+        #main-header { padding: 40px 50px; } 
+
+        .logo {
+            float: left;
+            background: linear-gradient(to top, rgb(94, 195, 253) 50% , white 50%);
+            
+            
+            border-radius: 50%;
+            margin-left: -30px;
+            margin-right: 30px;
+            margin-top: -28px;
+        }
+
+        .master-title { 
+            font-size: 50px; 
+            color: rgb(102, 0, 128);
+            font-family: cursive;
+            font-style: italic;
+        }
+        
+        .master-title a {
+            position: relative;
+        }
+
+        .master-title a::before {
+            content:attr(data-text);
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: #e7f06b;
+            width: 0;
+            overflow: hidden;
+            white-space: nowrap;
+            transition: 0.2s ease-in;
+        }
+
+        .master-title a:hover::before {
+            width: 100%;
+        }
+
+        .master-description {
+            font-size: 15px; font-weight: 500;
+            color: #383838;
+            font-style: italic;
+        }
+
+       
+    </style>
+    <!-- 네비게이션 -->
+    <style>
+        #main-navigation {
+            border-top: 1px solid #C8C8C8;
+            border-bottom: 1px solid #C8C8C8;
+            margin-bottom: 20px;
+            height: 40px;
+        }
+        
+        .outer-menu-item {
+            float: left;
+            position: relative;
+            
+        }
+        .outer-menu-item:hover {
+            background: rgb(255, 252, 101);
+            font-size : 20px;
+        }
+
+        .menu-title {
+            display: block;
+            height: 30px; line-height: 30px;
+            text-align: center;
+            padding: 5px 20px;
+        }
+
+        .inner-menu {
+            display: none;
+            position: absolute;
+            top: 40px; left: 0;
+            width: 100%;
+
+            background: white;
+            box-shadow: 0 2px 6px rgba(5, 5, 5, 0.9);
+            z-index: 1000;
+
+            text-align: center
+        }
+
+        .inner-menu-item > a {
+            display: block;
+            padding: 5px 10px;
+            color: black
+        }
+
+        .inner-menu-item > a:hover {
+            background: black;
+            color: white;
+        }
+    </style>
+    <!-- 네비게이션 내부의 검색 -->
+    <style>
+        .search-bar {
+            height: 26px;
+            padding: 7px;
+        }
+        .input-search {
+            display: block;
+            float: left;
+
+            background-color: #FFFFFF;
+            border: 1px solid #fdee15;
+            border-radius: 15px 0 0 15px;
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+
+            width: 120px; height: 24px;
+            padding: 0 0 0 10px;
+            font-size: 12px;
+            color: #555555;
+        }
+
+        .input-search:focus {
+            border-color: rgba(82, 168, 236, 0.8);
+            outline: 0;
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+        }
+
+        .input-search-submit {
+            display: block;
+            width: 50px; height: 26px;
+            border-radius: 0 15px 15px 0;
+            border: 1px solid #fdee15;
+            background-color: #faf5af;
+            color :#3f3f3e;
+            margin-left: -1px;
+            display: inline-block;
+        }
+    </style>
+    <!-- 중앙 내용 -->
+    <style>
+        /* body 태그의 너비: 960픽셀 */
+        /* #page-wrapper 태그의 padding 속성으로 내용물 너비는 920픽셀 */
+        #content { overflow: hidden; }
+        #main-section {
+            float: left;
+            width: 710px;
+        }
+        #main-aside {
+            float: right;
+            width: 200px;
+        }
+        span {
+            font-weight: bold;
+        }
+    </style>
+    <!-- 좌측 내용물 -->
+    <style>
+        article { 
+            padding: 0 10px 20px 10px;
+            border-bottom: 1px solid #c7ab30;
+        }
+
+        .article-header { padding: 20px 0; }
+        .article-title { 
+            font-size: 30px;
+            font-weight: 500; 
+            padding-bottom: 10px;
+        }
+        .article-title-deco {
+            color :rgb(224, 31, 105);
+        }
+        .article-date { font-size: 13px; }
+        .article-body {
+            font-size: 20px;
+        }
+    </style>
+    <!-- 우측 구성 -->
+    <style>
+        .aside-list { padding: 10px 0 30px 0; }
+        .aside-list > h3 {
+            font-size: 20px;
+            font-weight: 600;
+        }
+        .aside-list li a {
+            margin-left: 8px;
+            font-size: 18px;
+            color: #6C6C6C;
+        }
+    </style>
+    <!--하단 푸터-->
+    <style>
+        .fa {
+            padding: 10px;
+            font-size: 20px;
+            width: 35px;
+            text-align: center;
+            text-decoration: none;
+        }
+        .fa:hover {
+            opacity: 0.7;
+        }
+        .fa-facebook {
+            background: #3B5998;
+            color: white;
+        }
+         .fa-twitter {
+            background: #55ACEE;
+            color: white;
+        }
+        .fa-instagram {
+            background :rgb(145, 7, 145);
+            color : white;
+        }
+    </style>
+    <script></script>
+    <script></script>
+</head>
+<body>
+    <div id="page-wrapper">
+        <header id="main-header">
+            <div class="logo">
+                <img src="첨부사진/로고.png">
+            </div>
+            <hgroup>
+                <h1 class="master-title"><a href="#" data-text="MY DREAM">MY DREAM</a></h1>
+                <h2 class="master-description">20607 김보민</h2>
+            </hgroup>
+        </header>
+        <nav id="main-navigation">
+            <div class="pull-left">
+                <ul class="outer-menu">
+                    <li class="outer-menu-item">
+                        <span class="menu-title"><a href="#">Home</a></span>
+                    </li>
+                    <li class="outer-menu-item">
+                        <span class="menu-title"><a href="https://cafe.naver.com/2021comdong">Activities</a></span>
+                    </li>
+                </ul>
+            </div>
+            <div class="pull-right">
+                <div class="search-bar">
+                    <form>
+                        <input type="text" class="input-search" />
+                        <input type="submit" class="input-search-submit" value="검색" />
+                    </form>
+                </div>
+            </div>
+        </nav>
+        <div id="content">
+            <section id="main-section">
+                <article>
+                    <div class="article-header">
+                        <h1 class="article-title"><span class="article-title-deco">학과소개</span></h1>
+                        <p class="article-date">2021년 00월 00일</p>
+                    </div>
+                    <div class="article-body">
+                        <img src="첨부사진/학과소개.png" />
+                        <br />
+                        <br />
+                        <p>방대해진 정보를 체계적으로 처리·분석하고 이를 이용하여 미래를 예측할 수 있는 
+                            능력이 요구되면서 통계학의 중요성이 커지고 있다. </p>
+                        <p><span>통계학은 수학적 지식을 바탕으로 자연현상이나 사회현상, 경제현상 또는 특정 집단의 
+                            다양한 특성 및 정보를 과학적으로 분석하고 결과를 이끌어내는 이론과 방법을 연구하는 학문이다.</span> 
+                            통계학은 통계이론의 개발과 함께 통계적 방법을 연구할 수 있는 이론통계분야, 그리고 사회에서 발생하는 
+                            문제에 대한 실험계획, 회귀분석, 시계열분석, 전산통계, 품질관리 등을 다루는 응용통계분야로 
+                            구분할 수 있다.</p>
+                    </div>
+                </article>
+                <article>
+                    <div class="article-header">
+                        <h1 class="article-title"><span class="article-title-deco">학과특성</span></h1>
+                        <p class="article-date">2021년 00월 00일</p>
+                    </div>
+                    <div class="article-body">
+                        <img src="첨부사진/학과특성.png" />
+                        <br />
+                        <br />
+                        <p>뉴스에서 통계 결과를 자주 볼 수 있는 것처럼, 통계학은 사회 현상을 숫자로 이해할 수 있기 
+                            때문에 실생활과 밀접한 관계에 있다. <span>현대 사회가 복잡해짐에 따라 사회와 여러 학문 분야에서 
+                            통계학의 중요성이 점차 커지고 있다.</span></p>
+                        <p>통계학은 사회학이나 경제학 등 다양한 분야에 응용되므로 사회·경제 분야에도 흥미가 있으면 
+                            통계학을 바탕으로 관련 응용 분야로도 진출이 가능하다.</p>
+                    </div>
+                </article>
+                <article>
+                    <div class="article-header">
+                        <h1 class="article-title"><span class="article-title-deco">흥미와 적성</span></h1>
+                        <p class="article-date">2021년 00월 00일</p>
+                    </div>
+                    <div class="article-body">
+                        <img src="첨부사진/흥미와 적성.png" />
+                        <br />
+                        <br />
+                        <p>기본적으로 수학을 좋아해야 하며, 정보를 분석하고 추리하는 것을 좋아하는 사람이면 좋다. 
+                            또한 사회, 경제, 자연 및 인간생활에 관심을 갖고 이에 관련된 여러 현상을 분석하는 것을
+                            즐기거나 제품 및 서비스의 품질에 관심 있는 학생도 좋다. <span>컴퓨터를 활용한 통계 분석 기법이 
+                            많이 사용되기 때문에 컴퓨터 활용 능력과 집중력, 논리력이 필요하다.</span></p>
+                        <p>통계학은 사회학이나 경제학 등 다양한 분야에 응용되므로 사회·경제 분야에도 흥미가 있으면 
+                            통계학을 바탕으로 관련 응용 분야로도 진출이 가능하다.</p>
+                    </div>
+                </article>
+                <article>
+                    <div class="article-header">
+                        <h1 class="article-title"><span class="article-title-deco">주요 교과목</span></h1>
+                        <p class="article-date">2021년 00월 00일</p>
+                    </div>
+                    <div class="article-body">
+                        <img src="첨부사진/주요 교과목.png" />
+                        <br />
+                        <br />
+                        <p>관련학과로는 <span>#통계학과, #응용통계학과, #정보통계학과, #데이터정보학과, #데이터과학과, 
+                            #전산통계학과, #데이터사이언스학과, #빅데이터공학과</span> 가 있다.<br>
+                            통계학은 경제학, 사회학, 심리학 등 사회과학부터 자연과학, 공학분야 등 사회의 광범위한 연구 
+                            분야에 응용될 수 있는 학문이다. 이에 따라 통계학과에서는 통계전문지식을 습득하고 사회에 응용할 
+                            수 있도록 다양한 교과목을 개설하고 있다. <br>
+                            컴퓨터의 이용이 많아지면서 정보통계학과, 전산통계학과, 컴퓨터통계학과 등의 명칭으로도 
+                            개설되어 있으며, 컴퓨터프로그램을 주로 사용하게 되면서 통계소프트웨어 관련 교과목이 많이 
+                            포함되어 있다.<br><br>
+                            <span>‡ 기초과목 : 통계수학, 선형대수학, 표본조사론, 미분적분학<br>
+                            ‡ 심화과목 : 응용확률론, 통계적 방법론, 보험통계학, 수리통계학, 비모수통계학, 회귀분석, 
+                            표본설계론, 계량경제학, 분산분석론, 응용확률론, 데이터마이닝 등<br>
+                            ▶ 취득자격증<br>
+                            ☞ 국가자격 : 정보처리기사, 사회조사분석사, 품질경영기사, 보험계리사, 손해사정사</p></span>
+                            
+                    </div>
+                </article>
+            </section>
+            <aside id="main-aside">
+                <div class="aside-list">
+                    <h3>참고자료</h3>
+                    <ul>
+                        <li><a href="https://www.youtube.com/watch?v=AlVbiHtR7Tw">소개영상</a></li>
+                        <li><a href="https://www.youtube.com/watch?v=lNX1e5-4ZIg">관련영상</a>
+                </div>
+            </aside>
+        </div>
+        <footer id="main-footer">
+            <a href="#" class="fa fa-facebook"></a>
+            <a href="#" class="fa fa-twitter"></a>
+            <a href="#" class="fa fa-instagram"></a>
+        </footer>
+    </div>
+</body>
+</html>
